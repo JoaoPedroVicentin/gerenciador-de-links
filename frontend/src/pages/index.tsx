@@ -70,7 +70,7 @@ export default function Home(props: HomeProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const linksCountResponse = await api.get('/links')
+  const linksCountResponse = await api.get('/links/count')
 
   return {
     props: {
