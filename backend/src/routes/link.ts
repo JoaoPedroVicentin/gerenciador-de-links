@@ -1,14 +1,8 @@
-import { prisma } from "../lib/prisma"
 import { FastifyInstance } from 'fastify'
 import puppeteer from "puppeteer";
 import { z } from 'zod'
 
 export async function linkRoutes(fastify: FastifyInstance) {
-    fastify.get('/links/count', async () => {
-        const count = await prisma.link.count()
-
-        return { count }
-    })
 
     fastify.post('/links', async (request, reply) => {
         const createLinkBody = z.object({
@@ -56,17 +50,6 @@ export async function linkRoutes(fastify: FastifyInstance) {
         }
     
         await browser.close();
-    
-        await prisma.link.create({
-          data: {
-            title: list.title,
-            url: list.url,
-            description: list.description,
-            name: list.name,
-            image: list.image,
-            icon: list.icon
-          }
-        })
     
         return reply.status(201).send(list)
       })

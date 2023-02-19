@@ -27,9 +27,6 @@
   "@fastify/cors": "^8.2.0",
   
     
-  "@prisma/client": "^4.10.1",
-  
-    
   "fastify": "^4.13.0",
   
     
@@ -44,13 +41,6 @@
   
     
   "@mermaid-js/mermaid-cli": "^9.3.0",
-  
-    
-  "prisma": "^4.10.1",
-  
-    
-  "prisma-erd-generator": "^1.2.5",
-  
     
   "tsx": "^3.12.3",
   
