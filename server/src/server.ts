@@ -3,6 +3,7 @@ import cors from '@fastify/cors'
 import puppeteer from "puppeteer";
 import { z } from 'zod'
 
+//
 
 async function bootstrap() {
     const fastify = Fastify({
