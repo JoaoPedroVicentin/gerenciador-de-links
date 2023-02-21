@@ -8,6 +8,8 @@ export const LinkCardContainer = styled('div', {
     gap: '0.5rem',
     position: 'relative',
     background: '$gray',
+    margin: '0 auto',
+    width: '20rem',
     height: '30rem',
 
     borderBottom: '5px solid $green',
@@ -29,7 +31,11 @@ export const LinkCardContainer = styled('div', {
         gap: '0.25rem',
         position: 'absolute',
         bottom: '2rem'
-    }
+    },
+
+    '@media(max-width: 440px)': {
+        width: '17rem',
+    },
 })
 
 export const LinkCardInfosHeader = styled('div', {
@@ -74,6 +80,17 @@ export const LinkCardInfosBody = styled('div', {
 
     h3: {
         fontSize: '1.25rem',
-        color: '$green'
+        color: '$green',
+        maxHeight: '45px',
+        overflow: 'hidden'
+    },
+
+    p: {
+        maxHeight: '90px',
+        overflow: 'hidden',
+
+        '@media(max-width: 440px)': {
+            fontSize: '$sm',
+        },
     }
 })

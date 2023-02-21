@@ -7,6 +7,11 @@ export const Container = styled('section', {
     gridTemplateColumns: '5fr 3fr',
     alignItems: 'center',
     justifyContent: 'center',
+
+    '@media(max-width: 930px)': {
+        gridTemplateColumns: '1fr',
+    },
+
 })
 
 export const InfosColumn = styled('div', {
@@ -19,7 +24,31 @@ export const InfosColumn = styled('div', {
 
     h1: {
         textAlign: 'center',
+
+        '@media(max-width: 570px)': {
+            fontSize: '$large'
+        },
     },
+
+    img: {
+        '@media(max-width: 570px)': {
+            width: '15rem',
+            height: '10rem'
+        },
+    },
+
+    '@media(max-width: 930px)': {
+        padding: '2rem',
+        height: '100vh'
+    },
+
+    footer: {
+        display: 'none',
+
+        '@media(max-width: 930px)': {
+            display: 'block'
+        },
+    }
 })
 
 export const LoginColumn = styled('div', {
@@ -40,7 +69,7 @@ export const LoginColumn = styled('div', {
         '&:hover': {
             background: '#C53535'
         }
-    }
+    },
 })
 
 export const InfosAuthor = styled('div', {

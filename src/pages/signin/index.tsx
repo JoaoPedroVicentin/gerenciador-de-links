@@ -10,6 +10,8 @@ import GoogleIcon from '@mui/icons-material/Google';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { NextSeo } from "next-seo/lib/meta/nextSEO";
 
 export default function SignIn() {
 
@@ -29,23 +31,29 @@ export default function SignIn() {
     }
 
     return (
-        <Container>
-            <InfosColumn>
-                <h1><span>Gerencie</span> e <span>salve</span> links de suas páginas favoritas!</h1>
-                <Image src={imageSignIn} width={460} alt='Ilustration SignIn' />
-                <InfosAuthor>
-                    <h3>Created by <span>João Pedro Vicentin</span></h3>
-                    <Buttons>
-                        <a href="https://contate.me/joao-pedro-lopes-vicentin" target="_blank"><WhatsAppIcon /></a>
-                        <a href="https://www.linkedin.com/in/joaopedrovicentin/"><LinkedInIcon /></a>
-                        <a href='https://github.com/JoaoPedroVicentin' target='_blank'><GitHubIcon /></a>
-                    </Buttons>
-                </InfosAuthor>
-            </InfosColumn>
-            <LoginColumn>
-                <h1>Cadastre-se já!</h1>
-                <button onClick={handleSignIn}><GoogleIcon /> Login com o Google</button>
-            </LoginColumn>
-        </Container>
+        <>
+            <NextSeo title="Crie uma conta" />
+            <Container>
+                <InfosColumn>
+                    <h1><span>Gerencie</span> e <span>salve</span> links de suas páginas favoritas!</h1>
+                    <Image src={imageSignIn} width={460} alt='Ilustration SignIn' />
+                    <InfosAuthor>
+                        <h3>Created by <span>João Pedro Vicentin</span></h3>
+                        <Buttons>
+                            <a href="https://contate.me/joao-pedro-lopes-vicentin" target="_blank"><WhatsAppIcon /></a>
+                            <a href="https://www.linkedin.com/in/joaopedrovicentin/"><LinkedInIcon /></a>
+                            <a href='https://github.com/JoaoPedroVicentin' target='_blank'><GitHubIcon /></a>
+                        </Buttons>
+                    </InfosAuthor>
+                    <footer>
+                        <KeyboardArrowDownIcon fontSize="large" />
+                    </footer>
+                </InfosColumn>
+                <LoginColumn>
+                    <h1>Cadastre-se já!</h1>
+                    <button onClick={handleSignIn}><GoogleIcon /> Login com o Google</button>
+                </LoginColumn>
+            </Container>
+        </>
     )
 }

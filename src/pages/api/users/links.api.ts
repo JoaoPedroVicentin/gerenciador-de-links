@@ -1,17 +1,7 @@
 import { prisma } from '@/lib/prisma'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { getServerSession } from 'next-auth'
-import { z } from 'zod'
 import { buildNextAuthOptions } from '../auth/[...nextauth].api'
-
-const SearchLinkBodySchema = z.object({
-  title: z.string(),
-  url: z.string(),
-  description: z.string(),
-  name: z.string(),
-  image: z.string(),
-  icon: z.string()
-})
 
 export default async function handler(
   req: NextApiRequest,
@@ -29,7 +19,7 @@ export default async function handler(
   }
 
   if (req.method === 'POST') {
-    const newLink = SearchLinkBodySchema.parse(req.body)
+    const newLink = req.body
 
     await prisma.link.create({
       data: {
@@ -47,9 +37,11 @@ export default async function handler(
   }
 
   if (req.method === 'GET') {
+
+
     const links = await prisma.link.findMany({
       where: {
-        userId: session.user.id
+        userId: session.user.id,
       }
     })
 

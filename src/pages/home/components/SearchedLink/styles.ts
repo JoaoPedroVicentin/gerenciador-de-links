@@ -17,7 +17,11 @@ export const SearchedLinkSection = styled('div', {
         '&:hover': {
             background: '#C53535'
         }
-    }
+    },
+
+    '@media(max-width: 840px)': {
+        alignItems: 'center',
+    },
 })
 
 export const SearchedLinkContainer = styled('div', {
@@ -26,7 +30,16 @@ export const SearchedLinkContainer = styled('div', {
 
     img: {
         margin: 'auto 0'
-    }
+    },
+
+    '@media(max-width: 840px)': {
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+
+    '@media(max-width: 500px)': {
+        textAlign: 'center'
+    },
 })
 
 export const SearchedLinkInfos = styled('div', {
@@ -37,12 +50,24 @@ export const SearchedLinkInfos = styled('div', {
     width: '25rem',
 
     h2: {
-        fontSize: '$large'
+        fontSize: '$large',
+
+        '@media(max-width: 500px)': {
+            fontSize: '$md',
+        },
     },
 
     h3: {
         fontWeight: '$medium',
         color: '$white',
+
+        '@media(max-width: 500px)': {
+            fontSize: '$sm'
+        },
+    },
+
+    '@media(max-width: 500px)': {
+        width: '100%'
     },
 })
 
@@ -54,5 +79,9 @@ export const SiteLinkInfos = styled('div', {
 
     h3: {
         margin: 'auto 0'
-    }
+    },
+
+    '@media(max-width: 500px)': {
+        justifyContent: 'center'
+    },
 })

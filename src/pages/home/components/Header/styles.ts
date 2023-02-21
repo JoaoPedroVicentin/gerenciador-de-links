@@ -7,6 +7,10 @@ export const HeaderContainer = styled('header', {
     display: 'flex',
     alignItems: 'center',
     padding: '0 7rem',
+
+    '@media(max-width: 900px)': {
+        padding: '0 3.5rem'
+    },
 })
 
 export const HeaderInfos = styled('div', {
@@ -22,7 +26,11 @@ export const HeaderInfos = styled('div', {
         gap: '1rem',
 
         h3: {
-            margin: 'auto 0'
+            margin: 'auto 0',
+
+            '@media(max-width: 440px)': {
+                display: 'none'
+            },
         },
 
         img: {

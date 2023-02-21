@@ -16,12 +16,24 @@ export const SearchLinkSection = styled('section', {
     justifyContent: 'center',
 
     h1: {
-        width: '40rem',
-        textAlign: 'center'
+        width: '45vw',
+        textAlign: 'center',
+
+        '@media(max-width: 760px)': {
+            fontSize: '$xl'
+        }
     },
 
     h3: {
         color: '$red'
+    },
+
+    '@media(max-width: 900px)': {
+        padding: '5rem 3.5rem'
+    },
+
+    '@media(max-width: 440px)': {
+        padding: '5rem 0rem'
     },
 })
 
@@ -47,13 +59,27 @@ export const NewLinkBody = styled('div', {
 
             '&:hover': {
                 background: '#1F9090'
-            }
-        }
-    }
+            },
+
+            '@media(max-width: 440px)': {
+                width: '2.5rem',
+                height: '2.5rem'
+            },
+        },
+
+        '@media(max-width: 440px)': {
+            flexDirection: 'column'
+        },
+    },
+
+    '@media(max-width: 440px)': {
+        padding: '2rem 0.5rem'
+    },
 })
 
 export const Input = styled('input', {
-    width: '37rem',
+    width: '45vw',
+    maxWidth: '600px',
     background: '$gray',
     border: 'none',
     borderRadius: '5px',
@@ -73,6 +99,22 @@ export const Input = styled('input', {
 
 export const MyLinksSection = styled('section', {
     padding: '5rem 7rem',
+    maxWidth: '1440px',
+
+    h2:{
+        color: '#3D3D4B',
+        fontWeight: '$md',
+        textAlign: 'center'
+    },
+
+    '@media(max-width: 900px)': {
+        padding: '5rem 3.5rem'
+    },
+
+    '@media(max-width: 440px)': {
+        padding: '5rem 0rem'
+    },
+    
 })
 
 export const MyLinksHeader = styled('div', {
@@ -81,11 +123,11 @@ export const MyLinksHeader = styled('div', {
     marginBottom: '5rem',
 
     form: {
-        display: 'flex',
+        display: 'none',
         gap: '2rem',
 
         input: {
-            width: '15rem',
+            width: '20vw',
             background: '$gray',
             border: 'none',
             borderRadius: '5px',
@@ -113,13 +155,27 @@ export const MyLinksHeader = styled('div', {
                 background: '#1F9090'
             }
         }
-    }
+    },
+
+    '@media(max-width: 900px)': {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        gap: '2rem'
+    },
 })
 
 export const MyLinksContainer = styled('div', {
     display: 'grid',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: '5rem',
     gridTemplateColumns: '1fr 1fr 1fr',
+    alignItems: 'center',
+    gap: '5rem 0rem',
+
+    '@media(max-width: 1220px)': {
+        gridTemplateColumns: '1fr 1fr'
+    },
+
+    '@media(max-width: 790px)': {
+        gridTemplateColumns: '1fr'
+    },
 })

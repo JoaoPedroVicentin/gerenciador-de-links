@@ -10,18 +10,22 @@ import { useRouter } from "next/router"
 import { buildNextAuthOptions } from "../api/auth/[...nextauth].api"
 import { HomeContainer, Input, MyLinksContainer, MyLinksHeader, MyLinksSection, NewLinkBody, SearchLinkSection } from "./styles"
 import Header from "./components/Header"
+import { ClipLoader } from "react-spinners"
 
 import SearchIcon from '@mui/icons-material/Search';
 import SearchedLink from "./components/SearchedLink"
 import LinkCard from "./components/LinkCard"
+import { useMutation, useQuery } from "@tanstack/react-query"
+import { queryClient } from "@/lib/react-query"
+import { NextSeo } from "next-seo/lib/meta/nextSEO"
 
 interface LinkProps {
     id: string,
-    title?: string,
     url: string,
+    title?: string,
     description?: string,
     name?: string,
-    image: string,
+    image?: string,
     icon?: string
 }
 
@@ -37,69 +41,64 @@ export default function Home() {
 
     const isSigned = session.status === 'authenticated'
 
-    const [newLink, setNewLink] = useState<LinkProps>({
-        id: '',
-        url: '',
-        image: '',
-        name: '',
-        title: '',
-        icon: '',
-        description: ''
-    })
+    const [loading, setLoading] = useState(false);
 
-    const [links, setLinks] = useState<LinkProps[]>([])
+    const [newLink, setNewLink] = useState<LinkProps>({ id: '', url: '' })
+
+    const { data } = useQuery<LinkProps[]>(['links'], async () => {
+        const response = await api.get("/users/links")
+        return response.data
+    },)
 
     useEffect(() => {
         if (!isSigned) {
             router.push('/')
-        } else {
-            fetchLinks()
         }
     }, [isSigned])
-
-    async function fetchLinks() {
-        await api.get("/users/links")
-            .then(response => setLinks(response.data))
-    }
 
     const {
         register,
         handleSubmit,
-        setValue,
-        formState: { errors },
     } = useForm<SearchLinkFormData>({
         resolver: zodResolver(SearchLinkFormSchema),
     })
 
-    async function handleSearchLink(data: SearchLinkFormData) {
+    const searchNewLink = useMutation(async (data: SearchLinkFormData) => {
+        setLoading(true)
+        setNewLink({ url: '', id: '' })
+        const response = await api.post('/puppeteer', {url: data.url})
 
-        try {
-            const response = await api.post('/puppeteer', {
-                url: data.url
-            })
-            const { id, title, name, description, url, image, icon } = response.data
+        const { id, title, name, description, url, image, icon } = response.data
 
-            console.log(response.data)
+        setNewLink({
+            id: id,
+            title: title,
+            name: name,
+            description: description,
+            url: url,
+            image: image,
+            icon: icon
+        })
 
-            setNewLink({
-                id: id,
-                title: title,
-                name: name,
-                description: description,
-                url: url,
-                image: image,
-                icon: icon
-            })
-
-        } catch (err) {
-            alert("Digite uma url válida")
-
+        return response.data
+    }, {
+        onSuccess: () => {
+            setLoading(false)
+            queryClient.invalidateQueries(['links'])
+        },
+        onError: () => {
+            setLoading(false)
+            window.alert('Digite uma url válida')
         }
-        setValue('url', '')
+    })
+
+    async function handleSearchLink(data: SearchLinkFormData) {
+        await searchNewLink.mutateAsync(data)
     }
 
     return (
         <>
+            <NextSeo title="Gerencie seus links" description="Salve aqui os links de suas páginas favoritas" />
             <Header name={session.data?.user.name} image={session.data?.user.image} isSigned={isSigned} />
             <HomeContainer>
                 <SearchLinkSection>
@@ -110,6 +109,8 @@ export default function Home() {
                             <Input type="text" placeholder="Pesquisar URL" {...register('url')} />
                             <button type="submit"><SearchIcon /></button>
                         </form>
+
+                        <ClipLoader color='#3BB6B6' loading={loading} speedMultiplier={0.6} />
 
                         {newLink.url &&
                             <SearchedLink
@@ -133,20 +134,22 @@ export default function Home() {
                         </form>
                     </MyLinksHeader>
 
+                    {data?.length === 0 && <h2>Você ainda não possui links salvos</h2>}
+
                     <MyLinksContainer>
-                        {links.map((link) => {
-                            return (
-                                <LinkCard
-                                    key={link.id}
-                                    id={link.id}
-                                    url={link.url}
-                                    description={link.description}
-                                    icon={link.icon}
-                                    image={link.image}
-                                    name={link.name}
-                                    title={link.title} />
-                            )
-                        })}
+                        {data?.map(link => {
+                                return (
+                                    <LinkCard
+                                        key={link.id}
+                                        id={link.id}
+                                        url={link.url}
+                                        description={link.description}
+                                        icon={link.icon}
+                                        image={link.image}
+                                        name={link.name}
+                                        title={link.title} />
+                                )
+                            })}
                     </MyLinksContainer>
                 </MyLinksSection>
             </HomeContainer></>
