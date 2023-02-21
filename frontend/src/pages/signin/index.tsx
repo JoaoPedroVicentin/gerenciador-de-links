@@ -41,7 +41,7 @@ export default function SignIn() {
                         <h3>Created by <span>João Pedro Vicentin</span></h3>
                         <Buttons>
                             <a href="https://contate.me/joao-pedro-lopes-vicentin" target="_blank"><WhatsAppIcon /></a>
-                            <a href="https://www.linkedin.com/in/joaopedrovicentin/"><LinkedInIcon /></a>
+                            <a href="https://www.linkedin.com/in/joaopedrovicentin/" target="_blank"><LinkedInIcon /></a>
                             <a href='https://github.com/JoaoPedroVicentin' target='_blank'><GitHubIcon /></a>
                         </Buttons>
                     </InfosAuthor>
