@@ -19,6 +19,16 @@ export default async function handler(
 
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
+  await page.setRequestInterception(true);
+  page.on('request', interceptedRequest => {
+    if (interceptedRequest.isInterceptResolutionHandled()) return;
+    if (
+      interceptedRequest.url().endsWith('.png') ||
+      interceptedRequest.url().endsWith('.jpg')
+    )
+      interceptedRequest.abort();
+    else interceptedRequest.continue();
+  });
   await page.goto(url);
 
   const title = await page.evaluate(() => {
