@@ -11,7 +11,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { NextSeo } from "next-seo/lib/meta/nextSEO";
+import { NextSeo } from "next-seo"
 
 export default function SignIn() {
 

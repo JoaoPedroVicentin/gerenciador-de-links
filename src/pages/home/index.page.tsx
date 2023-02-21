@@ -17,7 +17,7 @@ import SearchedLink from "./components/SearchedLink"
 import LinkCard from "./components/LinkCard"
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { queryClient } from "@/lib/react-query"
-import { NextSeo } from "next-seo/lib/meta/nextSEO"
+import { NextSeo } from "next-seo"
 
 interface LinkProps {
     id: string,
