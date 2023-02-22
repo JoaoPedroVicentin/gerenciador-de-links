@@ -66,7 +66,7 @@ export default function Home() {
     const searchNewLink = useMutation(async (data: SearchLinkFormData) => {
         setLoading(true)
         setNewLink({ url: '', id: '' })
-        const response = await api.post('/puppeteer', {url: data.url})
+        const response = await api.post('https://gerador-de-links-api.vercel.app/puppeteer', {url: data.url})
 
         const { id, title, name, description, url, image, icon } = response.data
 
