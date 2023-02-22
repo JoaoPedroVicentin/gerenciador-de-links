@@ -1,6 +1,15 @@
-const puppeteer = require('puppeteer')
 const fastify = require('fastify')
 const cors = require('@fastify/cors')
+
+let chrome = {}
+let puppeteer
+
+if(process.env.AWS_LAMBDA_FUNCTION_VERSION){
+    chrome = require("chrome-aws-lambda")
+    puppeteer = require("puppeteer-core")
+} else {
+    puppeteer = require("puppeteer")
+}
 
 
 async function bootstrap() {
@@ -13,21 +22,22 @@ async function bootstrap() {
     })
 
     app.post('/puppeteer', async (request, reply) => {
+        let options = {}
 
         const { url } = request.body
 
-        const browser = await puppeteer.launch({ headless: true });
+        if(process.env.AWS_LAMBDA_FUNCTION_VERSION){
+            options = {
+                args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
+                defaultViewport: chrome.defaultViewport,
+                executablePath: await chrome.executablePath,
+                headless: true,
+                ignoreHTTPSErrors: true
+            }
+        }
+
+        const browser = await puppeteer.launch(options);
         const page = await browser.newPage();
-        await page.setRequestInterception(true);
-        page.on('request', interceptedRequest => {
-            if (interceptedRequest.isInterceptResolutionHandled()) return;
-            if (
-                interceptedRequest.url().endsWith('.png') ||
-                interceptedRequest.url().endsWith('.jpg')
-            )
-                interceptedRequest.abort();
-            else interceptedRequest.continue();
-        });
         await page.goto(url);
 
         const title = await page.evaluate(() => {
@@ -70,7 +80,7 @@ async function bootstrap() {
 
     })
 
-    await app.listen({ port: 3030 })
+    app.listen({ port: process.env.PORT || 3030 })
 }
 
 bootstrap()
