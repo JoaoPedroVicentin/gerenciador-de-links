@@ -28,7 +28,7 @@
     "next-auth": "^4.19.2",
     "next-seo": "^5.15.0",
     "nookies": "^2.5.2",
-    "puppeteer": "^19.7.1",
+    "puppeteer": "^19.7.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.1",

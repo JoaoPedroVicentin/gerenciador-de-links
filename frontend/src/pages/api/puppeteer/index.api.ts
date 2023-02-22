@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import puppeteer from "puppeteer";
+import puppeteer from 'puppeteer'
 import { z } from 'zod'
 
 export default async function handler(

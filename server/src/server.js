@@ -1,26 +1,20 @@
-import Fastify from "fastify";
-import cors from '@fastify/cors'
-import puppeteer from "puppeteer";
-import { z } from 'zod'
+const puppeteer = require('puppeteer')
+const fastify = require('fastify')
+const cors = require('@fastify/cors')
 
-//
 
 async function bootstrap() {
-    const fastify = Fastify({
+    const app = fastify({
         logger: true
     })
 
-    await fastify.register(cors, {
+    await app.register(cors, {
         origin: true
     })
 
-    fastify.post('/puppeteer', async (request, reply) => {
+    app.post('/puppeteer', async (request, reply) => {
 
-        const createLinkBody = z.object({
-            url: z.string()
-          })
-
-        const { url } = createLinkBody.parse(request.body)
+        const { url } = request.body
 
         const browser = await puppeteer.launch({ headless: true });
         const page = await browser.newPage();
@@ -76,7 +70,7 @@ async function bootstrap() {
 
     })
 
-    await fastify.listen({ port: 3030 })
+    await app.listen({ port: 3030 })
 }
 
 bootstrap()
