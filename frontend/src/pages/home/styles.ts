@@ -20,7 +20,8 @@ export const SearchLinkSection = styled('section', {
         textAlign: 'center',
 
         '@media(max-width: 760px)': {
-            fontSize: '$xl'
+            fontSize: '$xl',
+            width: '80%'
         }
     },
 
@@ -33,7 +34,7 @@ export const SearchLinkSection = styled('section', {
     },
 
     '@media(max-width: 440px)': {
-        padding: '5rem 0rem'
+        padding: '5rem 2rem'
     },
 })
 
@@ -73,7 +74,7 @@ export const NewLinkBody = styled('div', {
     },
 
     '@media(max-width: 440px)': {
-        padding: '2rem 0.5rem'
+        padding: '2rem'
     },
 })
 

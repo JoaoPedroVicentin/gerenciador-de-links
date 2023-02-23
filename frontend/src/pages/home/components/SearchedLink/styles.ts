@@ -38,7 +38,12 @@ export const SearchedLinkContainer = styled('div', {
     },
 
     '@media(max-width: 500px)': {
-        textAlign: 'center'
+        textAlign: 'center',
+
+        img: {
+            width: '12.5rem',
+            height: '6.875rem'
+        }
     },
 })
 
@@ -59,7 +64,7 @@ export const SearchedLinkInfos = styled('div', {
 
     h3: {
         fontWeight: '$medium',
-        color: '$white',
+        color: '#F8F8FF',
 
         '@media(max-width: 500px)': {
             fontSize: '$sm'
@@ -82,6 +87,12 @@ export const SiteLinkInfos = styled('div', {
     },
 
     '@media(max-width: 500px)': {
+
+        img: {
+            width: '30px',
+            height: '30px'
+        },
+
         justifyContent: 'center'
     },
 })

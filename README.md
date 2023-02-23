@@ -80,7 +80,6 @@ $ npm run dev
 
 <div align="center">
     <h3>👨‍💻 Criado por João Pedro Vicentin! Meus contatos:</h3>
-    <br>
     <div>
         <h3>
             <a href="https://www.linkedin.com/in/joaopedrovicentin/" target="_blank">Linkedin</a>

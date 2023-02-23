@@ -6,6 +6,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/lib/react-query";
 import Image from 'next/image'
+import { useState } from "react";
+import { ClipLoader } from "react-spinners";
 
 interface LinkCardProps {
     id: string,
@@ -19,21 +21,26 @@ interface LinkCardProps {
 
 export default function LinkCard({ id, title, name, description, icon, image, url }: LinkCardProps) {
 
-    const createNewLink = useMutation(async (id: string) => {
+    const [loading, setLoading] = useState(false)
+
+    const deleteLink = useMutation(async (id: string) => {
+        setLoading(true)
         const response = await api.delete(`/users/${id}`)
 
         return response.data
     }, {
         onSuccess: () => {
+            setLoading(true)
             queryClient.invalidateQueries(['links'])
         },
         onError: () => {
+            setLoading(true)
             window.alert('Error')
         }
     })
 
     async function handleDeleteLink(id: string) {
-        await createNewLink.mutateAsync(id)
+        await deleteLink.mutateAsync(id)
     }
 
     return (
@@ -45,7 +52,9 @@ export default function LinkCard({ id, title, name, description, icon, image, ur
                     <Image src={defaultIcon} alt='icon' />}
                     {name ? <p>{name}</p> : <p>Web</p>}
                 </div>
-                <button onClick={() => { handleDeleteLink(id) }}><DeleteIcon /></button>
+                <button onClick={() => { handleDeleteLink(id) }}>
+                    {loading ? <ClipLoader color='#fff' size={15} speedMultiplier={0.6} /> : <DeleteIcon /> }
+                </button>
             </LinkCardInfosHeader>
             <LinkCardInfosBody>
                 <h3>{title}</h3>
