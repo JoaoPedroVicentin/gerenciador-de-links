@@ -1,6 +1,6 @@
 <h1>Gerenciador de links 🔗</h1>
 
-<h2><a href="https://gerador-de-links-mauve.vercel.app/" target="_blank">🌍 Deploy na VERCEL</a>
+<h2><a href="https://gerador-de-links-mauve.vercel.app/" target="_blank">🌍 Deploy do projeto</a>
 </h2>
 
 <br>
@@ -56,6 +56,11 @@
 
 <br>
 
+<h2>🌐 Deploys</h2>
+<li>VERCEL - Frontend e Backend</li>
+<li>Planetscale - Banco de dados</li>
+
+<br>
 
 ```bash
 #Clone este repositório
