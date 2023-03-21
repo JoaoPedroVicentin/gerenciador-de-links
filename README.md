@@ -28,7 +28,7 @@
 
 <br>
 
-<h2>🛠️ Ferramentas utilizadas</h2>
+<h2>🛠️ Tecnologias utilizadas</h2>
 
 <h3>Frontend</h3>
 <li>React | React Query | React Hook Form</li>
