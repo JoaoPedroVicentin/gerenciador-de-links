@@ -1,4 +1,4 @@
-<h1>Gerenciador de links 🔗</h1>
+<h1>🔗 Gerenciador de links</h1>
 
 <h2><a href="https://gerador-de-links-mauve.vercel.app/" target="_blank">🌍 Deploy do projeto</a>
 </h2>
