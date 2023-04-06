@@ -19,7 +19,11 @@ export const LinkCardContainer = styled('div', {
 
     img: {
         width: '100%',
-        height: '11rem'
+        height: '11rem',
+
+        '@media(max-width: 440px)': {
+            height: 'auto'
+        },
     },
 
     a: {
@@ -88,9 +92,5 @@ export const LinkCardInfosBody = styled('div', {
     p: {
         maxHeight: '90px',
         overflow: 'hidden',
-
-        '@media(max-width: 440px)': {
-            fontSize: '$sm',
-        },
     }
 })
