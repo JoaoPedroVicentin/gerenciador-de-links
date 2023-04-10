@@ -6,7 +6,7 @@
 <br>
 
 <div align="center">
-    <img src=".\frontend\src\assets\gerador-de-links-gif.gif" width="80%" />
+    <img src=".\frontend\src\assets\gerador-de-links-gif.gif" width="100%" />
     <h3 align="center">O projeto foi criado para o desafio de trainee na <strong>Devnology</strong>, ele consiste em um sistema para gerenciar links do usuário.</h3>
 </div>
 
